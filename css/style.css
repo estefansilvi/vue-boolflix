@@ -1,0 +1,55 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* UTILITY CLASS*/
+.padding-15{
+  padding: 15px;
+}
+.paddingX-15{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.paddingY-15{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.marginX-15{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.marginY-15{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.float-l{
+  float: left;
+}
+.float-r{
+  float: right;
+}
+
+/* END UTILITY CLASS*/
+
+
+
+.elenco-movies ul{
+  list-style-type: none;
+  width: 100%;
+  background-color: lightblue;
+}
+
+.movies{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+
+}

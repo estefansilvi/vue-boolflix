@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title></title>
+  </head>
+  <body>
+    <div id="search-bar">
+      <div class="search">
+        <h1 class="paddingY-15 paddingX-15">Biblioteca Cinematografica</h1>
+        <h3 class="paddingX-15">cerca i tuoi film preferiti</h3>
+        <input  v-model="searchInput" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="cerca film" v-model="searchWord">
+        <button @click="search" type="button" name="button">Search</button>
+      </div>
+      <div class="elenco-movies">
+        <ul>
+          <li v-for="movie in listMovies" class="movies marginX-15 marginY-15 padding-15 inline-block float-l">
+            <p>Titolo: {{movie.title}}</p>
+            <p>Titolo originale: {{movie.original_title}}</p>
+            <p>Lingua: {{movie.original_language}}</p>
+            <p>Media voto: {{movie.vote_average}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+  <script src="js/script.js" charset="utf-8"></script>
+
+  </script>
+  </body>
+</html>
