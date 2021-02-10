@@ -24,9 +24,9 @@
             <p>Titolo: {{movie.title}}</p>
             <p>Titolo originale: {{movie.original_title}}</p>
             <p>Lingua: {{movie.original_language}}</p>
-            <p>Media voto:
+            <p> voto:
+              <i class="fas fa-star" v-for="(star,index) in voteList" :class="light-star"></i>
             </p>
-              <i class="fas fa-star" v-for="i in movie.vote_average"></i>
           </li>
         </ul>
       </div>
