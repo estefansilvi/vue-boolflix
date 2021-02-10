@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
     <title></title>
   </head>
@@ -14,7 +15,7 @@
       <div class="search">
         <h1 class="paddingY-15 paddingX-15">Biblioteca Cinematografica</h1>
         <h3 class="paddingX-15">cerca i tuoi film preferiti</h3>
-        <input  v-model="searchInput" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="cerca film" v-model="searchWord">
+        <input  v-model="searchInput" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="inserire titolo del film" >
         <button @click="search" type="button" name="button">Search</button>
       </div>
       <div class="elenco-movies">
@@ -23,7 +24,9 @@
             <p>Titolo: {{movie.title}}</p>
             <p>Titolo originale: {{movie.original_title}}</p>
             <p>Lingua: {{movie.original_language}}</p>
-            <p>Media voto: {{movie.vote_average}}</p>
+            <p>Media voto:
+            </p>
+              <i class="fas fa-star" v-for="i in movie.vote_average"></i>
           </li>
         </ul>
       </div>
