@@ -4,7 +4,6 @@ var app = new Vue({
   data: {
     listMovies:[],
     searchInput:'',
-    voteList:[1,2,3,4,5],
     arrayFlags:['it','fr','en','es','ja'],
     serieTvList:[]
 
@@ -22,6 +21,7 @@ var app = new Vue({
     .then(function(resp) {
         self.serieTvList = resp.data.results;
     });
+
   },
 
   /* creo la funzione per svuotare l'input dopo aver cliccato il bottone o aver premuto enter */

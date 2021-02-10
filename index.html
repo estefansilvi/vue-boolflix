@@ -36,6 +36,7 @@
         <div class="elenco-movies ">
           <ul>
             <li v-for="movie in listMovies" class="movies marginX-15 marginY-15 padding-10 inline-block float-l ">
+              <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"class="images margin-bottom-5" alt="">
               <p class="color-white">Titolo: {{movie.title}}</p>
               <p class="color-white">Titolo originale: {{movie.original_title}}</p>
               <p class="color-white">Lingua:

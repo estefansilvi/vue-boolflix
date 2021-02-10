@@ -28,6 +28,9 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+.margin-bottom-5{
+  margin-bottom: 5px;
+}
 
 .inline-block {
   display: inline-block;
@@ -120,6 +123,10 @@
   border: 2px solid #ffffff;;
 }
 
+li img.images{
+  width: 50%;
+  border: 1px solid #ffffff;
+}
 .flag {
   width: 15%;
 }
