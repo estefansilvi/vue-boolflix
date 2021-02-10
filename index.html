@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" />
@@ -11,25 +12,69 @@
     <title></title>
   </head>
   <body>
-    <div id="search-bar">
-      <div class="search">
-        <h1 class="paddingY-15 paddingX-15">Biblioteca Cinematografica</h1>
-        <h3 class="paddingX-15">cerca i tuoi film preferiti</h3>
-        <input  v-model="searchInput" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="inserire titolo del film" >
-        <button @click="search" type="button" name="button">Search</button>
+    <div id="search-bar" class="container-fluid">
+
+      <!-- header -->
+      <div class="search inline-block bg-coloro-black ">
+        <div class="logo inline-block">
+          <img class="img-logo cursor-pointer"src="https://fontmeme.com/permalink/210210/4937b74c6317b36c509baa13669b4b20.png" alt="">
+        </div>
+        <div>
+          <h1 class="paddingY-15 paddingX-15 color-white inline-block">Film, serie TV e tanto altro. Senza limiti</h1>
+        </div>
+        <div>
+          <input  v-model="searchInput" @focus="resetInput" v-on:keyup.enter="search(); resetInput()" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="inserire titolo del film" >
+          <button class="botton-search cursor-pointer" @click="search(); resetInput()"  type="button" name="button">Search</button>
+        </div>
       </div>
-      <div class="elenco-movies">
-        <ul>
-          <li v-for="movie in listMovies" class="movies marginX-15 marginY-15 padding-15 inline-block float-l">
-            <p>Titolo: {{movie.title}}</p>
-            <p>Titolo originale: {{movie.original_title}}</p>
-            <p>Lingua: {{movie.original_language}}</p>
-            <p> voto:
-              <i class="fas fa-star" v-for="(star,index) in voteList" :class="light-star"></i>
-            </p>
-          </li>
-        </ul>
+      <!-- end header -->
+
+      <!-- main -->
+      <div class="container bg-coloro-lightgrey">
+
+        <!-- elenco film -->
+        <div class="elenco-movies ">
+          <ul>
+            <li v-for="movie in listMovies" class="movies marginX-15 marginY-15 padding-10 inline-block float-l ">
+              <p class="color-white">Titolo: {{movie.title}}</p>
+              <p class="color-white">Titolo originale: {{movie.original_title}}</p>
+              <p class="color-white">Lingua:
+              <img class="flag" alt="" v-if="arrayFlags.includes(movie.original_language)" :src="'./img/' + movie.original_language + '.png'">
+              </p>
+              <p class="color-white" v-else> {{ movie.original_language}}
+              </p class="color-white">
+              <p class="color-white"> Voto:
+                <i class="fas fa-star" v-for="index in assegnoVoto(movie.vote_average)" ></i>
+                <i class="far fa-star" v-for="index in (5 - assegnoVoto(movie.vote_average))"></i>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <!-- end elenco film -->
+
+        <!-- elenco serieTV -->
+        <div class="elenco-serie-tv">
+          <ul>
+            <li v-for="serie in serieTvList" class="serie-tv marginX-15 marginY-15 padding-10  inline-block float-l ">
+              <p class="color-white">Nome: {{serie.original_name}}</p>
+              <p class="color-white">Prima apparizione in tv: {{serie.first_air_date}}</p>
+              <p class="color-white">Popolarità: {{ serie.popularity }}</p>
+              <p class="color-white">Genere:{{ serie.genre_ids}}</p>
+              <p class="color-white">Lingua:
+              <img  class="flag" alt="" v-if="arrayFlags.includes(serie.original_language)" :src="'./img/' + serie.original_language + '.png'">
+              </p>
+              <p class="color-white"> Voto:
+                <i class="fas fa-star" v-for="index in assegnoVoto(serie.vote_average)" ></i>
+                <i class="far fa-star" v-for="index in (5 - assegnoVoto(serie.vote_average))"></i>
+              </p>
+            </li>
+          </ul>
       </div>
+      <!-- end elenco serieTV -->
+
+      </div>
+      <!-- end main -->
+
     </div>
 
 

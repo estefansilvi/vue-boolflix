@@ -1,59 +1,126 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 /* UTILITY CLASS*/
-.padding-15{
+.padding-10 {
+  padding: 10px;
+}
+.padding-15 {
   padding: 15px;
 }
-.paddingX-15{
+.paddingX-15 {
   padding-left: 15px;
   padding-right: 15px;
 }
-.paddingY-15{
+.paddingY-15 {
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.marginX-15{
+.marginX-15 {
   margin-left: 15px;
   margin-right: 15px;
 }
-.marginY-15{
+.marginY-15 {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.inline-block{
+.inline-block {
   display: inline-block;
 }
+.block {
+  display: block;
+}
 
-.float-l{
+.float-l {
   float: left;
 }
-.float-r{
+.float-r {
   float: right;
 }
 
+.color-white {
+  color: #ffffff;
+}
+.opacity-08 {
+  opacity: 0.8;
+}
+
+.bg-coloro-black {
+  background-color: #000000;
+}
+.bg-coloro-lightgrey {
+  background-color: lightgrey;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /* END UTILITY CLASS*/
 
 
 
-.elenco-movies ul{
-  list-style-type: none;
+.container {
   width: 100%;
-  background-color: lightblue;
 }
 
-.movies{
+/* style header */
+.search {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.img-logo {
+  width: 80%;
+  vertical-align: middle;
+}
+
+.search_bar_input {
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.botton-search {
+  font-size: 20px;
+  padding: 8px;
+  background-color: red;
+  border: none;
+  border-radius: 8px;
+}
+/* end style header */
+
+
+/* style main */
+
+/* elenco film e serieTV */
+.elenco-movies,
+.elenco-serie-tv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.elenco-movies,
+.elenco-serie-tv ul {
+  list-style-type: none;
+  margin-top: 10px;
+}
+
+.movies,
+.serie-tv {
   width: 200px;
-  height: 200px;
-  border: 1px solid black;
-
+  background-color: #000000;
+  border: 2px solid #ffffff;;
 }
 
-.light-star{
-  color:black;
+.flag {
+  width: 15%;
 }
+/* end elenco film e serieTV */
