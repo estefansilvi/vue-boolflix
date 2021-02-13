@@ -9,74 +9,93 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
-    <title></title>
+    <link rel="icon" href="https://fontmeme.com/permalink/210211/2f3759c58ef031214015a421a0c78788.png">
+    <title>
+      Boolflix
+    </title>
   </head>
-  <body>
-    <div id="search-bar" class="container-fluid">
+  <body class="bg-color-grey">
+    <div id="root">
+    <!-- header -->
+    <nav class="search-bar bg-color-black">
 
-      <!-- header -->
-      <div class="search inline-block bg-coloro-black ">
-        <div class="logo inline-block">
+      <div class="container display-flex align-items-center ">
+
           <img class="img-logo cursor-pointer"src="https://fontmeme.com/permalink/210210/4937b74c6317b36c509baa13669b4b20.png" alt="">
-        </div>
-        <div>
-          <h1 class="paddingY-15 paddingX-15 color-white inline-block">Film, serie TV e tanto altro. Senza limiti</h1>
-        </div>
-        <div>
-          <input  v-model="searchInput" @focus="resetInput" v-on:keyup.enter="search(); resetInput()" class="search_bar_input marginY-15 marginX-15" type="text" name="" placeholder="inserire titolo del film" >
+
+          <h1 class="color-white ">Film, serie TV e tanto altro. Senza limiti</h1>
+
+          <input class="search-bar-input" v-model="searchInput" @focus="resetInput" v-on:keyup.enter="search(); resetInput()" type="text" name="" placeholder="inserire titolo del film" >
           <button class="botton-search cursor-pointer" @click="search(); resetInput()"  type="button" name="button">Search</button>
-        </div>
+
       </div>
-      <!-- end header -->
+
+    </nav>
+    <!-- end header -->
 
       <!-- main -->
-      <div class="container bg-coloro-lightgrey">
+      <main>
 
         <!-- elenco film -->
-        <div class="elenco-movies ">
-          <ul>
-            <li v-for="movie in listMovies" class="movies marginX-15 marginY-15 padding-10 inline-block float-l ">
-              <img :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"class="images margin-bottom-5" alt="">
-              <p class="color-white">Titolo: {{movie.title}}</p>
-              <p class="color-white">Titolo originale: {{movie.original_title}}</p>
-              <p class="color-white">Lingua:
-              <img class="flag" alt="" v-if="arrayFlags.includes(movie.original_language)" :src="'./img/' + movie.original_language + '.png'">
-              </p>
-              <p class="color-white" v-else> {{ movie.original_language}}
-              </p class="color-white">
-              <p class="color-white"> Voto:
-                <i class="fas fa-star" v-for="index in assegnoVoto(movie.vote_average)" ></i>
-                <i class="far fa-star" v-for="index in (5 - assegnoVoto(movie.vote_average))"></i>
-              </p>
-            </li>
-          </ul>
+        <div class=" container results margin-top-15 ">
+          <h2 v-if="listMovies.length">Film</h2>
+          <div class="row">
+            <div v-for="movie in results" class="col-xs-3 card-column inline-block  ">
+              <div class="card">
+
+                <div class="card-cover padding-15">
+                  <img class="card-images img-fluid" v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"  alt="">
+                  <img class="card-images img-fluid" v-else src="./img/poster-placeholder.png"  alt="">
+                </div>
+
+                <div class="card-info display-none padding-15">
+                  <p class="color-white">Titolo: <br> {{movie.title}}</p>
+                  <p class="color-white">Titolo originale:<br> {{movie.original_title}}</p>
+                  <p class="color-white">Lingua:
+                    <img class="flag" alt="" v-if="arrayFlags.includes(movie.original_language)" :src="'./img/' + movie.original_language + '.png'">
+                    <span v-else>{{ movie.original_language }}</span>
+                  </p>
+                  </p class="color-white">
+                  <p class="color-white"> Voto:
+                  <i class="fas fa-star" v-for="index in assegnoVoto(movie.vote_average)" ></i>
+                  <i class="far fa-star" v-for="index in (5 - assegnoVoto(movie.vote_average))"></i>
+                </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
         <!-- end elenco film -->
 
         <!-- elenco serieTV -->
-        <div class="elenco-serie-tv">
-          <ul>
-            <li v-for="serie in serieTvList" class="serie-tv marginX-15 marginY-15 padding-10  inline-block float-l ">
+        <div class="results margin-top-15 display-none ">
+          <h2 v-if="listSerieTV.length">Serie Tv</h2>
+
+          <div class="row">
+            <div v-for="serie in results" class="column-200 marginX-15 marginY-15 padding-10  inline-block  ">
               <p class="color-white">Nome: {{serie.original_name}}</p>
               <p class="color-white">Prima apparizione in tv: {{serie.first_air_date}}</p>
               <p class="color-white">Popolarità: {{ serie.popularity }}</p>
               <p class="color-white">Genere:{{ serie.genre_ids}}</p>
               <p class="color-white">Lingua:
               <img  class="flag" alt="" v-if="arrayFlags.includes(serie.original_language)" :src="'./img/' + serie.original_language + '.png'">
+              <span v-else>{{ serie.original_language }}</span>
               </p>
               <p class="color-white"> Voto:
                 <i class="fas fa-star" v-for="index in assegnoVoto(serie.vote_average)" ></i>
                 <i class="far fa-star" v-for="index in (5 - assegnoVoto(serie.vote_average))"></i>
               </p>
-            </li>
-          </ul>
+            </div>
+          </div>
+
       </div>
       <!-- end elenco serieTV -->
 
-      </div>
+    </main>
       <!-- end main -->
+  </div>
 
-    </div>
 
 
 

@@ -1,27 +1,39 @@
 const punteggio ='voto_average';
 var app = new Vue({
-  el: '#search-bar',
+  el: '#root',
   data: {
-    listMovies:[],
+    results:[],
     searchInput:'',
     arrayFlags:['it','fr','en','es','ja'],
-    serieTvList:[]
+    listMovies:[],
+    listSerieTV: []
 
   },
   methods:{
 
-  /* creo la funzione per la ricerca dei film e delle serie tv */
+  /* creo le funzione per la ricerca dei film e delle serie tv */
   search: function () {
+    this.results = [];
+    this.searchMovie();
+    this.searchSerieTv();
+  },
+
+  searchMovie: function(){
     const self = this;
     axios.get('https://api.themoviedb.org/3/search/movie?api_key=c040985640a2d910494ec5b91989dd26&query=' + self.searchInput)
-    .then(function(resp) {
+    .then((resp) => {
       self.listMovies = resp.data.results;
+      self.results = [...self.results,...self.listMovies];
     });
-    axios.get('https://api.themoviedb.org/3/search/tv?api_key=c040985640a2d910494ec5b91989dd26&query=' + self.searchInput)
-    .then(function(resp) {
-        self.serieTvList = resp.data.results;
-    });
+  },
 
+  searchSerieTv: function(){
+    const self = this;
+    axios.get('https://api.themoviedb.org/3/search/tv?api_key=c040985640a2d910494ec5b91989dd26&query=' + self.searchInput)
+    .then((resp) => {
+        self.listSerieTV = resp.data.results;
+        self.results = [...self.results, ...self.listSerieTV]
+    });
   },
 
   /* creo la funzione per svuotare l'input dopo aver cliccato il bottone o aver premuto enter */

@@ -31,14 +31,27 @@
 .margin-bottom-5{
   margin-bottom: 5px;
 }
-
+.margin-left-15 {
+  margin-left: 15px;
+}
+.margin-top-15 {
+  margin-top: 15px;
+}
 .inline-block {
   display: inline-block;
 }
 .block {
   display: block;
 }
-
+.display-none {
+  display: none;
+}
+.display-flex {
+  display: flex;
+}
+.align-items-center{
+  align-items: center;
+}
 .float-l {
   float: left;
 }
@@ -53,11 +66,11 @@
   opacity: 0.8;
 }
 
-.bg-coloro-black {
+.bg-color-black {
   background-color: #000000;
 }
-.bg-coloro-lightgrey {
-  background-color: lightgrey;
+.bg-color-grey {
+  background-color: grey;
 }
 
 .cursor-pointer {
@@ -66,31 +79,17 @@
 /* END UTILITY CLASS*/
 
 
-
-.container {
-  width: 100%;
-}
-
 /* style header */
-.search {
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .img-logo {
-  width: 80%;
-  vertical-align: middle;
+  width: 20%;
 }
 
-.search_bar_input {
+.search-bar-input {
   font-size: 20px;
   padding: 8px;
   border-radius: 8px;
 }
-.botton-search {
+.button-search {
   font-size: 20px;
   padding: 8px;
   background-color: red;
@@ -103,31 +102,40 @@
 /* style main */
 
 /* elenco film e serieTV */
-.elenco-movies,
-.elenco-serie-tv {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+
+ .row{
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
-.elenco-movies,
-.elenco-serie-tv ul {
-  list-style-type: none;
-  margin-top: 10px;
-}
+.card {
 
-.movies,
-.serie-tv {
-  width: 200px;
   background-color: #000000;
-  border: 2px solid #ffffff;;
+  border: 2px solid #ffffff;
 }
 
-li img.images{
-  width: 50%;
+.card-cover,
+.card-info {
+
+}
+.card:hover .card-cover{
+  display: none;
+}
+
+.card:hover  .card-info {
+  display: block;
+}
+
+.card-column {
+  float: none;
+}
+
+.card-column .card-cover .card-images{
+  width: 100%;
   border: 1px solid #ffffff;
 }
 .flag {
   width: 15%;
 }
+
 /* end elenco film e serieTV */
