@@ -20,6 +20,11 @@
   padding-bottom: 15px;
 }
 
+.paddingY-45 {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
 .marginX-15 {
   margin-left: 15px;
   margin-right: 15px;
@@ -31,11 +36,19 @@
 .margin-bottom-5{
   margin-bottom: 5px;
 }
+
+.margin-bottom-15{
+  margin-bottom: 15px;
+}
 .margin-left-15 {
   margin-left: 15px;
 }
 .margin-top-15 {
   margin-top: 15px;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
 }
 .inline-block {
   display: inline-block;
@@ -52,11 +65,21 @@
 .align-items-center{
   align-items: center;
 }
+.justify-content-around {
+  justify-content: space-around;
+}
+.font-size-30 {
+  font-size: 30px;
+}
 .float-l {
   float: left;
 }
 .float-r {
   float: right;
+}
+
+.float-none {
+  float: none;
 }
 
 .color-white {
@@ -109,14 +132,20 @@
 }
 
 .card {
-
+  position: relative;
+  height: 350px;
   background-color: #000000;
-  border: 2px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
-.card-cover,
+.card-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .card-info {
-
+  display: none;
 }
 .card:hover .card-cover{
   display: none;
@@ -126,16 +155,26 @@
   display: block;
 }
 
-.card-column {
-  float: none;
+.card .content-layer  {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .card-column .card-cover .card-images{
-  width: 100%;
+  max-width: 90%;
+  max-height: 90%;
+  height: auto;
   border: 1px solid #ffffff;
 }
 .flag {
   width: 15%;
+}
+
+@media all and (max-width: 500px){
+  [class^='col-xs']{
+    width: 100%;
+  }
 }
 
 /* end elenco film e serieTV */

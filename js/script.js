@@ -2,37 +2,51 @@ const punteggio ='voto_average';
 var app = new Vue({
   el: '#root',
   data: {
-    results:[],
     searchInput:'',
     arrayFlags:['it','fr','en','es','ja'],
     listMovies:[],
-    listSerieTV: []
-
+    listSerieTV: [],
+    isSearchingMovies: false,
+    isSearchingSeries: false,
+    apiMoviesErrorMessage: '',
+    apiSeriesErrorMessage: ''
   },
   methods:{
 
   /* creo le funzione per la ricerca dei film e delle serie tv */
   search: function () {
-    this.results = [];
+    this.listMovies = [];
+    this.listSerieTV = [];
     this.searchMovie();
     this.searchSerieTv();
   },
 
   searchMovie: function(){
-    const self = this;
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=c040985640a2d910494ec5b91989dd26&query=' + self.searchInput)
+
+    this.isSearchingMovies = true;
+    this.apiMoviesErrorMessage = '';
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=c040985640a2d910494ec5b91989dd26&query=' + this.searchInput)
     .then((resp) => {
-      self.listMovies = resp.data.results;
-      self.results = [...self.results,...self.listMovies];
+      this.listMovies = resp.data.results;
+      this.isSearchingMovies = false;
+    })
+    .catch(e => {
+      this.apiMoviesErrorMessage = e.message;
+      this.isSearchingMovies = false;
     });
   },
 
   searchSerieTv: function(){
-    const self = this;
-    axios.get('https://api.themoviedb.org/3/search/tv?api_key=c040985640a2d910494ec5b91989dd26&query=' + self.searchInput)
+    this.isSearchingSeries = true;
+    this.apiSeriesErrorMessage = '';
+    axios.get('https://api.themoviedb.org/3/search/tv?api_key=c040985640a2d910494ec5b91989dd26&query=' + this.searchInput)
     .then((resp) => {
-        self.listSerieTV = resp.data.results;
-        self.results = [...self.results, ...self.listSerieTV]
+        this.listSerieTV = resp.data.results;
+        this.isSearchingSeries = false;
+    })
+    .catch(e => {
+      this.apiSeriesErrorMessage = e.message;
+      this.isSearchingSeries = false;
     });
   },
 
