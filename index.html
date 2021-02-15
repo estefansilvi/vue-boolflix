@@ -14,16 +14,22 @@
       Boolflix
     </title>
   </head>
-  <body class="bg-color-grey">
+  <body class="bg-color-black">
     <div id="root">
     <!-- header -->
     <nav class="search-bar bg-color-black">
 
-      <div class="container display-flex align-items-center justify-content-around">
+      <div class=" paddingY-15 display-flex align-items-center justify-content-around">
 
           <img class="img-logo cursor-pointer"src="https://fontmeme.com/permalink/210210/4937b74c6317b36c509baa13669b4b20.png" alt="">
 
-          <h1 class="font-size-30 color-white padding-15">Film, serie TV e tanto altro. Senza limiti</h1>
+          <ul class="nav-list inline-block float-l font-size-20 color-white">
+            <li class="inline-block float-l paddingX-15">Home</li>
+            <li class="inline-block float-l paddingX-15">Film</li>
+            <li class="inline-block float-l paddingX-15">Serie TV</li>
+            <li class="inline-block float-l paddingX-15">Nuovi e popolri</li>
+            <li class="inline-block float-l paddingX-15">La mia lista</li>
+          </ul>
 
           <input class="search-bar-input" v-model="searchInput" @focus="resetInput" v-on:keyup.enter="search(); resetInput()" type="text" name="" placeholder="inserire titolo del film" >
           <button class="button-search cursor-pointer" @click="search(); resetInput()"  type="button" name="button">Search</button>
@@ -36,7 +42,7 @@
       <!-- main -->
       <main>
 
-        <div class="container margin-bottom-15 margin-top-30" v-if="apiMoviesErrorMessage || apiSeriesErrorMessage">
+        <div class=" margin-bottom-15 margin-top-30" v-if="apiMoviesErrorMessage || apiSeriesErrorMessage">
           <div v-if="apiMoviesErrorMessage" class="alert alert-warning alert-dismissible margin-bottom-15" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>Warning!</strong>{{apiMoviesErrorMessage}}
@@ -59,8 +65,8 @@
         </div>
 
         <!-- elenco film -->
-        <div class=" container results margin-top-15 ">
-          <h2 v-if="listMovies.length">Film</h2>
+        <div class="padding-15 results margin-top-15 ">
+          <h2 v-if="listMovies.length" class="marginX-15 color-white">Film</h2>
           <div class="row">
             <div v-for="movie in listMovies" class="col-xs-6 col-sm-6 col-md-4 col-lg-3 card-column inline-block float-none">
               <div class="card">
@@ -92,8 +98,8 @@
 
 
         <!-- elenco serieTV -->
-        <div class=" container results margin-top-15 ">
-          <h2 v-if="listSerieTV.length">Serie tv</h2>
+        <div class="padding-15 results margin-top-15 ">
+          <h2 v-if="listSerieTV.length"class="marginX-15 color-white">Serie tv</h2>
           <div class="row">
             <div v-for="serie in listSerieTV" class="col-xs-6 col-sm-6 col-md-4 col-lg-3 card-column inline-block float-none">
               <div class="card">
